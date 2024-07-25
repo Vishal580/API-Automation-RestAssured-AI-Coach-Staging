@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="C:/Users/visha/IdeaProjects/AI_Coach">
+        <classes>
+            <class name="createUser">
+                <methods>
+                    <include name="CreateAccount_POST"/>
+                </methods>
+            </class>
+            <class name="APITest">
+                <methods>
+                    <include name="LoginUser_POST"/>
+                    <include name="LanguageUpdate_PUT"/>
+                    <include name="Language_GET"/>
+                    <include name="GetRepositoryDetails_GET"/>
+                    <include name="GetPersonaDetails_GET"/>
+                    <include name="GetLanguageList_GET"/>
+                    <include name="ChatWithPersona_POST"/>
+                    <include name="GetFeedback_POST"/>
+                    <include name="GetVideoDuration_GET"/>
+                    <include name="UserLogout_POST"/>
+                    <include name="ForgotPassword_POST"/>
+                </methods>
+            </class>
+            <class name="changePassword">
+                <methods>
+                    <include name="LoginUser_POST"/>
+                    <include name="ChangePassword_POST"/>
+                </methods>
+            </class>
+            <class name="DeleteUser">
+                <methods>
+                    <include name="LoginUser_POST"/>
+                    <include name="DeleteUserAccount_DELETE"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
