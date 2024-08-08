@@ -5,43 +5,31 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelUtils {
+    static XSSFWorkbook workbook;
+    static XSSFSheet sheet;
 
-    public static void main(String args[]){
-        getRowCount();
-        getCellData();
+    public ExcelUtils(String excelPath, String sheetName){
+        try{
+            workbook = new XSSFWorkbook(excelPath);
+            sheet = workbook.getSheet(sheetName);
+        }catch(Exception exp){
+            System.out.println(exp.getMessage());
+            System.out.println(exp.getCause());
+            exp.printStackTrace();
+        }
     }
 
-    public static void getCellData(){
-        try {
-            String excelPath = "./data/TestData.xlsx";
-
-            XSSFWorkbook workbook = new XSSFWorkbook(excelPath);
-            XSSFSheet sheet = workbook.getSheet("Sheet1");
-
+    public static void getCellData(int rowNum, int colNum){
             //String value = sheet.getRow(1).getCell(0).getStringCellValue();
 
-            DataFormatter formatter=new DataFormatter();
-            Object value=formatter.formatCellValue(sheet.getRow(1).getCell(0));
-            System.out.println(value);
-        }catch (Exception exe){
-            System.out.println(exe.getMessage());
-            System.out.println(exe.getCause());
-            exe.printStackTrace();
-        }
+        DataFormatter formatter=new DataFormatter();
+        Object value=formatter.formatCellValue(sheet.getRow(rowNum).getCell(colNum));
+        System.out.println(value);
     }
     public static void getRowCount(){
-        try {
-            String excelPath = "./data/TestData.xlsx";
 
-            XSSFWorkbook workbook = new XSSFWorkbook(excelPath);
-            XSSFSheet sheet = workbook.getSheet("Sheet1");
+        int rowCount = sheet.getPhysicalNumberOfRows();
+        System.out.println("Number Of Rows: " + rowCount);
 
-            int rowCount = sheet.getPhysicalNumberOfRows();
-            System.out.println("Number Of Rows: " + rowCount);
-        }catch (Exception exe){
-            System.out.println(exe.getMessage());
-            System.out.println(exe.getCause());
-            exe.printStackTrace();
-        }
     }
 }

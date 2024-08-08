@@ -227,6 +227,7 @@ public class APITest {
     public void UserLogout_POST(){
         Response response=given()
                 .header("Authorization", "Bearer "+authorizationToken)
+                .contentType("application/json")
                 .post(baseURI+"/auth/logout");
 
         System.out.println(response.getBody().asString());
