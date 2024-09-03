@@ -2,19 +2,21 @@ import io.qameta.allure.Feature;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import utils.Randomgenerator;
+
 import static io.restassured.RestAssured.*;
 
 public class createUser {
 
-    public String authorizationToken;
-    public String baseURI="https://dev.bes-learning.com:3005/api/v1";
+    Randomgenerator email = new Randomgenerator();
+    public String baseURI="https://staging.bes-learning.com/ai-coach/api/v1";
 
-    public String userEmail ="Thor@mailinator.com";
+    public String signinEmail ="Thor"+email.RandomNumberString()+"@mailinator.com";
 
     @Test
     @Feature("Positive Scenario")
     public void CreateAccount_POST(){
-        String body = "{\"email\": \"" + userEmail + "\"}";
+        String body = "{\"email\": \"" + signinEmail + "\"}";
 
         System.out.println(body);
 

@@ -8,7 +8,7 @@ import static io.restassured.RestAssured.*;
 public class DeleteUser {
 
     public String authorizationToken;
-    public String baseURI="https://dev.bes-learning.com:3005/api/v1";
+    public String baseURI="https://staging.bes-learning.com/ai-coach/api/v1";
 
     public String userEmail ="Thor@mailinator.com";
     public String userPassword = "Test@123";

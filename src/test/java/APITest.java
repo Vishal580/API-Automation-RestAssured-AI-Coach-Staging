@@ -8,8 +8,10 @@ import static io.restassured.RestAssured.*;
 
 public class APITest {
     public String authorizationToken;
-    public String baseURI="https://dev.bes-learning.com:3005/api/v1";
+    public String baseURI="https://staging.bes-learning.com/ai-coach/api/v1";
 
+    createUser email = new createUser();
+    //public String userEmail =email.signinEmail;
     public String userEmail ="vishal@mailinator.com";
     public String userPassword = "Vishal@123";
 
