@@ -27,5 +27,9 @@ public class createUser {
 
         System.out.println(response.getBody().asString());
         Assert.assertEquals(response.getStatusCode(),200);
+
+/*        String password = response.jsonPath().getString("password");
+
+        System.out.println("Password: " + password);*/
     }
 }

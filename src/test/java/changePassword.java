@@ -43,7 +43,6 @@ public class changePassword {
     @Feature("Positive Scenario")
     public void ChangePassword_POST(){
         String body="{\"oldPassword\":\"" + oldPassword + "\",\"newPassword\":\"" + newPassword + "\",\"confirmNewPassword\":\"" + confirmNewPassword + "\"}";
-//        String authorizationToken= "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OTksImp0aSI6IjA1Zzk4YmNlYTE5MzFiNzIyMTdnOTdkYmU4MTZhZWMwNzQ4ZDhiNDQiLCJpYXQiOjE3MTk4MzY5MTQsImV4cCI6MTc1MTM5NDUxNH0.0eWtDz4DUOilb-NQn_f7fcvOwffLxyNr47mq8t3YUIA";
 
         System.out.println(body);
         System.out.println(authorizationToken);

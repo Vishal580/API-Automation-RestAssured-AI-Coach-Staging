@@ -11,7 +11,6 @@ public class APITest {
     public String baseURI="https://staging.bes-learning.com/ai-coach/api/v1";
 
     createUser email = new createUser();
-    //public String userEmail =email.signinEmail;
     public String userEmail ="vishal@mailinator.com";
     public String userPassword = "Vishal@123";
 
@@ -21,12 +20,11 @@ public class APITest {
 
     public String languageId = "22";
     public String language = "English";
-    public String content = "Web developer";
-
-    public String changePasswordEmail = "change@mailinator.com";
+    public String content = "Marketing manager";
 
     public static String repoId;
-    public static String personId;
+    public static String personaId;
+    public static String URL;
 
 //    @Test
 //    @Feature("Positive Scenario")
@@ -155,8 +153,11 @@ public class APITest {
                 .queryParam("repositoryId", repoId)
                 .get(baseURI+"/repository/persona");
 
-        personId = response.jsonPath().get("data.id[0]").toString();
-        System.out.println("------------------------------"+personId);
+        personaId = response.jsonPath().get("data.id[0]").toString();
+        System.out.println("------------------------------"+personaId);
+
+        URL = response.jsonPath().get("data.image[0]").toString();
+        System.out.println("------------------------------"+URL);
         response.prettyPrint();
         Assert.assertEquals(response.getStatusCode(), 200);
     }
@@ -176,12 +177,12 @@ public class APITest {
         Assert.assertEquals(response.getStatusCode(), 200);
     }
 
-    @Test(dependsOnMethods = {"LoginUser_POST"}, priority = 7)
+    @Test(dependsOnMethods = {"LoginUser_POST", "GetRepositoryDetails_GET", "GetPersonaDetails_GET"}, priority = 7)
     @Feature("Positive Scenario")
     public void ChatWithPersona_POST(){
         //String authToken= "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OTksImp0aSI6IjA1Zzk4YmNlYTE5MzFiNzIyMTdnOTdkYmU4MTZhZWMwNzQ4ZDhiNDQiLCJpYXQiOjE3MTk4MzY5MTQsImV4cCI6MTc1MTM5NDUxNH0.0eWtDz4DUOilb-NQn_f7fcvOwffLxyNr47mq8t3YUIA";
 
-        String body = "{\"personaId\": " + personId + ", \"language\": \"" + language + "\", \"content\": \"" + content + "\"}";
+        String body = "{\"personaId\": \"" + personaId + "\", \"language\": \"" + language + "\", \"content\": [{\"role\": \"user\", \"content\": \"" + content + "\"}]}";
 
         System.out.println(body);
 
@@ -198,7 +199,7 @@ public class APITest {
     @Test(dependsOnMethods = {"LoginUser_POST"}, priority = 8)
     @Feature("Positive Scenario")
     public void GetFeedback_POST(){
-        String body="{\"personaId\":"+ "\"" +personId + "\"" +",\"lastAIMessage\": \"Last AI Message\",\"lastUserMessage\": \"Last User Message\"}";
+        String body = "{\"personaId\": \"" + personaId + "\", \"language\": \"" + language + "\", \"lastAIMessage\": \"Last AI Message\", \"lastUserMessage\": \"Last User Message\"}";
         System.out.println(body);
 
         Response response=given()
@@ -211,13 +212,13 @@ public class APITest {
         Assert.assertEquals(response.getStatusCode(), 200);
     }
 
-    @Test(dependsOnMethods = {"LoginUser_POST"}, priority = 9)
+    @Test(dependsOnMethods = {"LoginUser_POST","GetRepositoryDetails_GET", "GetPersonaDetails_GET"}, priority = 9)
     @Feature("Positive Scenario")
     public void GetVideoDuration_GET(){
         Response response=given()
                 .header("Authorization", "Bearer "+authorizationToken)
-                .queryParam("url", "https://dev.bes-learning.com:3005/admin/repositoryPersonaImage/image-5a798691e2ea7afe-1719394883419.png")
-                .queryParam("repositoryId", "132")
+                .queryParam("url", URL)
+                .queryParam("repositoryId", repoId)
                 .get(baseURI+"/repository/persona/video/duration");
 
         response.prettyPrint();
