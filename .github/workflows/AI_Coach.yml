@@ -3,7 +3,7 @@ name: Scheduled API Test Runs
 on:
   workflow_dispatch:  # Manual trigger
   schedule:
-  - cron: '0 */24 * * *'
+  - cron: '0 */6 * * *'
 
 jobs:
   test:
