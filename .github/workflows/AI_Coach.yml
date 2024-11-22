@@ -9,7 +9,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      BASE_URL: "https://gudimetla-shashank.github.io/AI_Coach"
+      BASE_URL: "https://Vishal580.github.io/API-Automation-using-RestAssured"
 
     steps:
       - uses: actions/checkout@v4
