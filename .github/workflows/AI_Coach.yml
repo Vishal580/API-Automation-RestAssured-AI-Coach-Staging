@@ -1,9 +1,9 @@
 name: Scheduled API Test Runs
 
 on:
-  workflow_dispatch:  # Manual trigger
+  workflow_dispatch:
   schedule:
-  - cron: '0 */6 * * *'
+  - cron: '0 */4 * * *'
 
 jobs:
   test:
@@ -84,11 +84,11 @@ jobs:
         with:
           server_address: smtp.gmail.com
           server_port: 587
-          username: jobs619733@gmail.com
-          password: isjt npgs ozpx fxmg  # Use GitHub secret for security
+          username: vishalkhetriba@gmail.com
+          password: hxuk gvrq oelg lupo  # Use GitHub secret for security
           subject: 'Test Results Notification'
           body: |
             The API tests have failed. You can review the test report at the following URL:
             ${{ env.DEPLOYMENT_URL }}
           to: vishal@frugaltestingin.com,yogeshk@frugaltesting.com
-          from: jobs619733@gmail.com
+          from: vishalkhetriba@gmail.com
