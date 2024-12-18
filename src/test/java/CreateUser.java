@@ -6,7 +6,7 @@ import utils.Randomgenerator;
 
 import static io.restassured.RestAssured.*;
 
-public class createUser {
+public class CreateUser {
 
     Randomgenerator email = new Randomgenerator();
     public String baseURI="https://staging.bes-learning.com/ai-coach/api/v1";

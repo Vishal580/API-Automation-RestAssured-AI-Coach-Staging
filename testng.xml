@@ -3,7 +3,7 @@
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="C:/Users/visha/IdeaProjects/AI_Coach">
         <classes>
-            <class name="createUser">
+            <class name="CreateUser">
                 <methods>
                     <include name="CreateAccount_POST"/>
                 </methods>
@@ -12,6 +12,7 @@
                 <methods>
                     <include name="LoginUser_POST"/>
                     <include name="LanguageUpdate_PUT"/>
+                    <include name="UserPhoneDetails_GET"/>
                     <include name="Language_GET"/>
                     <include name="GetRepositoryDetails_GET"/>
                     <include name="GetPersonaDetails_GET"/>
@@ -19,8 +20,8 @@
                     <include name="ChatWithPersona_POST"/>
                     <include name="GetFeedback_POST"/>
                     <include name="GetVideoDuration_GET"/>
-                    <include name="UserLogout_POST"/>
                     <include name="ForgotPassword_POST"/>
+                    <include name="UserLogout_POST"/>
                 </methods>
             </class>
             <class name="changePassword">
