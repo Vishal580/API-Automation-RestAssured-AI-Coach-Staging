@@ -54,7 +54,7 @@
                 <version>3.1.2</version>
                 <configuration>
                     <argLine>
-                        -javaagent:C:/Users/visha/.m2/repository/org/aspectj/aspectjweaver/1.9.9.1/aspectjweaver-1.9.9.1.jar
+                        -javaagent:C:\Users\visha\IdeaProjects\AI_Coach\aspectjweaver-1.9.9.1.jar
                     </argLine>
                     <skipTests>false</skipTests>
                     <testFailureIgnore>true</testFailureIgnore>
