@@ -22,11 +22,11 @@ public class APITest {
     public static String personaId;
     public static String URL;
 
-    public static String platform1 = "android";
-    public static String a_version = "1.0.1.8";
-
-    public static String platform2 = "ios";
-    public static String i_version = "1.0.1.8";
+//    public static String platform1 = "android";
+//    public static String a_version = "1.0.1.8";
+//
+//    public static String platform2 = "ios";
+//    public static String i_version = "1.0.1.8";
 
 //    @Test
 //    @Feature("Positive Scenario")
@@ -60,8 +60,9 @@ public class APITest {
             JsonPath jsonPath = response.jsonPath();
             authorizationToken = jsonPath.get("data.auth.accessToken");
         }
-        System.out.println(authorizationToken);
-        System.out.println(response.getBody().asString());
+        //System.out.println(authorizationToken);
+        //System.out.println(response.getBody().asString());
+        response.prettyPrint();
         Assert.assertEquals(response.getStatusCode(), 200);
     }
 
@@ -86,7 +87,6 @@ public class APITest {
     @Test(dependsOnMethods = {"LoginUser_POST"}, priority = 2)
     @Feature("Positive Scenario")
     public void LanguageUpdate_PUT(){
-        System.out.println(authorizationToken);
         String body="{\"languageId\": \"" + languageId + "\",\"language\": \"" + language + "\"}";
 
         System.out.println(body);
@@ -96,7 +96,8 @@ public class APITest {
                 .body(body)
                 .put(baseURI+"/auth/update-language");
 
-        System.out.println(response.getBody().asString());
+        //System.out.println(response.getBody().asString());
+        response.prettyPrint();
         Assert.assertEquals(response.getStatusCode(), 200);
     }
 
@@ -118,7 +119,8 @@ public class APITest {
                 .header("Authorization", "Bearer "+authorizationToken)
                 .get(baseURI+"/auth/language");
 
-        System.out.println(response.getBody().asString());
+//        System.out.println(response.getBody().asString());
+        response.prettyPrint();
         Assert.assertEquals(response.getStatusCode(), 200);
     }
 
@@ -226,7 +228,8 @@ public class APITest {
                 .body(body)
                 .post(baseURI+"/auth/forgot-password");
 
-        System.out.println(response.getBody().asString());
+//        System.out.println(response.getBody().asString());
+        response.prettyPrint();
         Assert.assertEquals(response.getStatusCode(), 200);
     }
 
@@ -238,7 +241,8 @@ public class APITest {
                 .contentType("application/json")
                 .post(baseURI+"/auth/logout");
 
-        System.out.println(response.getBody().asString());
+//        System.out.println(response.getBody().asString());
+        response.prettyPrint();
         Assert.assertEquals(response.getStatusCode(),200);
     }
 
