@@ -4,7 +4,6 @@ import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import static io.restassured.RestAssured.*;
-
 public class DeleteUser {
 
     public String authorizationToken;

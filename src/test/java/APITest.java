@@ -3,14 +3,12 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import static io.restassured.RestAssured.*;
 
 public class APITest {
     public String authorizationToken;
     public String baseURI="https://staging.bes-learning.com/ai-coach/api/v1";
 
-    CreateUser email = new CreateUser();
     public String userEmail ="vishal@mailinator.com";
     public String userPassword = "Vishal@123";
 
@@ -86,6 +84,19 @@ public class APITest {
 
     @Test(dependsOnMethods = {"LoginUser_POST"}, priority = 2)
     @Feature("Positive Scenario")
+    public void GetLanguageList_GET(){
+
+        Response response=given()
+                .header("Authorization", "Bearer "+authorizationToken)
+                .get(baseURI+"/chat/languages");
+
+        //System.out.println(response.getBody().asString());
+        response.prettyPrint();
+        Assert.assertEquals(response.getStatusCode(), 200);
+    }
+
+    @Test(dependsOnMethods = {"LoginUser_POST"}, priority = 3)
+    @Feature("Positive Scenario")
     public void LanguageUpdate_PUT(){
         String body="{\"languageId\": \"" + languageId + "\",\"language\": \"" + language + "\"}";
 
@@ -97,17 +108,6 @@ public class APITest {
                 .put(baseURI+"/auth/update-language");
 
         //System.out.println(response.getBody().asString());
-        response.prettyPrint();
-        Assert.assertEquals(response.getStatusCode(), 200);
-    }
-
-    @Test(dependsOnMethods = {"LoginUser_POST"}, priority = 3)
-    @Feature("Positive Scenario")
-    public void UserPhoneDetails_GET(){
-        Response response=given()
-                .header("Authorization", "Bearer "+authorizationToken)
-                .get(baseURI+"/auth/phone");
-
         response.prettyPrint();
         Assert.assertEquals(response.getStatusCode(), 200);
     }
@@ -126,6 +126,17 @@ public class APITest {
 
     @Test(dependsOnMethods = {"LoginUser_POST"}, priority = 5)
     @Feature("Positive Scenario")
+    public void UserPhoneDetails_GET(){
+        Response response=given()
+                .header("Authorization", "Bearer "+authorizationToken)
+                .get(baseURI+"/auth/phone");
+
+        response.prettyPrint();
+        Assert.assertEquals(response.getStatusCode(), 200);
+    }
+
+    @Test(dependsOnMethods = {"LoginUser_POST"}, priority = 6)
+    @Feature("Positive Scenario")
     public void GetRepositoryDetails_GET(){
         Response response=given()
                 .header("Authorization", "Bearer "+authorizationToken)
@@ -139,7 +150,7 @@ public class APITest {
         System.out.println("---------------------repoId: "+repoId);
     }
 
-    @Test(dependsOnMethods = {"LoginUser_POST", "GetRepositoryDetails_GET"}, priority = 6)
+    @Test(dependsOnMethods = {"LoginUser_POST", "GetRepositoryDetails_GET"}, priority = 7)
     @Feature("Positive Scenario")
     public void GetPersonaDetails_GET(){
         //String repositoryId = "132";
@@ -150,27 +161,14 @@ public class APITest {
                 .get(baseURI+"/repository/persona");
 
         personaId = response.jsonPath().get("data.id[0]").toString();
-        System.out.println("------------------------------"+personaId);
+        System.out.println("------------------------------Persona ID: "+personaId);
 
         URL = response.jsonPath().get("data.image[0]").toString();
-        System.out.println("------------------------------"+URL);
+        System.out.println("------------------------------Persona Image: "+URL);
         response.prettyPrint();
         Assert.assertEquals(response.getStatusCode(), 200);
     }
 
-    @Test(dependsOnMethods = {"LoginUser_POST"}, priority = 7)
-    @Feature("Positive Scenario")
-    public void GetLanguageList_GET(){
-
-        Response response=given()
-                .header("Authorization", "Bearer "+authorizationToken)
-                .queryParam("search", "English")
-                .get(baseURI+"/chat/languages");
-
-        //System.out.println(response.getBody().asString());
-        response.prettyPrint();
-        Assert.assertEquals(response.getStatusCode(), 200);
-    }
 
     @Test(dependsOnMethods = {"LoginUser_POST", "GetRepositoryDetails_GET", "GetPersonaDetails_GET"}, priority = 8)
     @Feature("Positive Scenario")

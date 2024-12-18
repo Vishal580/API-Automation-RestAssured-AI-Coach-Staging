@@ -3,7 +3,6 @@ import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import utils.Randomgenerator;
-
 import static io.restassured.RestAssured.*;
 
 public class CreateUser {

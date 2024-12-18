@@ -11,12 +11,12 @@
             <class name="APITest">
                 <methods>
                     <include name="LoginUser_POST"/>
+                    <include name="GetLanguageList_GET"/>
                     <include name="LanguageUpdate_PUT"/>
-                    <include name="UserPhoneDetails_GET"/>
                     <include name="Language_GET"/>
+                    <include name="UserPhoneDetails_GET"/>
                     <include name="GetRepositoryDetails_GET"/>
                     <include name="GetPersonaDetails_GET"/>
-                    <include name="GetLanguageList_GET"/>
                     <include name="ChatWithPersona_POST"/>
                     <include name="GetFeedback_POST"/>
                     <include name="GetVideoDuration_GET"/>
