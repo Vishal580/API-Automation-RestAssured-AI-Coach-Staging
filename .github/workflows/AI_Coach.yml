@@ -33,6 +33,7 @@ jobs:
       - name: Run tests
         id: test_run
         run: mvn clean test -Dtestng=testng.xml
+        continue-on-error: false  # This ensures workflow stops if tests fail
 
       #      # Step 5: Upload Allure test results
       #      - name: Publish Allure results

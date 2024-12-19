@@ -45,7 +45,7 @@ public class APITest {
     @Test(priority = 1)
     @Feature("Positive Scenario")
     public void LoginUser_POST(){
-        String body = "{\"emai\":\"" + userEmail + "\",\"password\":\"" + userPassword + "\"}";
+        String body = "{\"email\":\"" + userEmail + "\",\"password\":\"" + userPassword + "\"}";
 
         System.out.println(body);
         Response response=given()
