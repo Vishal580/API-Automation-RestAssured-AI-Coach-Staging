@@ -1,9 +1,9 @@
 name: AI Coach Staging API Testing
 
 on:
-  workflow_dispatch:
+  # workflow_dispatch:  # Manual trigger
   schedule:
-  - cron: '0 */6 * * *'
+    - cron: '*/5 * * * *'
 
 jobs:
   test:
@@ -12,50 +12,39 @@ jobs:
       BASE_URL: "https://Vishal580.github.io/API-Automation-using-RestAssured"
 
     steps:
-      # Step 1: Checkout the repository
       - uses: actions/checkout@v4
 
-      # Step 2: Set up JDK
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
           distribution: zulu
           java-version: 21
 
-      # Step 3: Install Allure
       - name: Install Allure
         run: |
           curl -o allure-2.13.8.tgz -OLs https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.13.8/allure-commandline-2.13.8.tgz
           sudo tar -zxvf allure-2.13.8.tgz -C /opt/
           sudo ln -s /opt/allure-2.13.8/bin/allure /usr/bin/allure
 
-      # Step 4: Run API tests
       - name: Run tests
         id: test_run
-        run: |
-          set -e  # Exit immediately if any command fails
-          mvn clean test -Dmaven.test.failure.ignore=false -Dtestng=testng.xm
-        continue-on-error: false  # This ensures workflow stops if tests fail
+        run: mvn clean test -Dtestng=testng.xml
 
-      #      # Step 5: Upload Allure test results
-      #      - name: Publish Allure results
-      #        uses: actions/upload-artifact@v4
-      #        with:
-      #          name: allure-results
-      #          path: allure-results
+      - name: Publish Allure results
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results
+          path: allure-results
 
-      # Step 6: Generate Allure report
       - name: Generate Allure report
         run: allure generate allure-results --clean -o allure-report
 
-      # Step 7: Upload Allure report
       - name: Publish Allure report
         uses: actions/upload-artifact@v4
         with:
           name: allure-report
           path: allure-report
 
-      # Step 8: Load report history from gh-pages branch
       - name: Load test report history
         uses: actions/checkout@v4
         if: always()
@@ -64,7 +53,6 @@ jobs:
           ref: gh-pages
           path: gh-pages
 
-      # Step 9: Build Allure report with history
       - name: Build test report
         uses: simple-elf/allure-report-action@v1.7
         if: always()
@@ -73,7 +61,6 @@ jobs:
           allure_history: allure-history
           allure_results: allure-results
 
-      # Step 10: Publish test report
       - name: Publish test report
         id: publish_report
         uses: peaceiris/actions-gh-pages@v4
@@ -83,14 +70,14 @@ jobs:
           publish_branch: gh-pages
           publish_dir: allure-history
 
-      # Step 11: Set deployment URL for the report
+      # Set the GitHub Pages deployment URL with the unique workflow run number
       - name: Set Deployment URL
-        if: always()
+        if: always()  # Ensure this step runs after publishing the report
         run: |
           echo "DEPLOYMENT_URL=${{ env.BASE_URL }}/${{ github.run_number }}/#" >> $GITHUB_ENV
           echo "Deployment URL is set to ${{ env.DEPLOYMENT_URL }}"
 
-      # Step 12: Send Email Notification if tests fail
+
       - name: Send Email Notification
         if: failure()   # Only send if there were test failures
         uses: dawidd6/action-send-mail@v3
