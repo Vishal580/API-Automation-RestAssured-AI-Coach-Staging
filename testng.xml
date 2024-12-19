@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite">
+<suite name="AI Coach Staging API">
     <test verbose="2" preserve-order="true" name="C:/Users/visha/IdeaProjects/AI_Coach">
         <classes>
             <class name="CreateUser">
