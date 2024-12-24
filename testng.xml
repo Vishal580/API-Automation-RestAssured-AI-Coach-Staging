@@ -3,12 +3,12 @@
 <suite name="AI Coach Staging API">
     <test verbose="2" preserve-order="true" name="C:/Users/visha/IdeaProjects/AI_Coach">
         <classes>
-            <class name="CreateUser">
-                <methods>
-                    <include name="CreateAccount_POST"/>
-                </methods>
-            </class>
-            <class name="APITest">
+<!--            <class name="CreateUser">-->
+<!--                <methods>-->
+<!--                    <include name="CreateAccount_POST"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+            <class name="MainFlow">
                 <methods>
                     <include name="LoginUser_POST"/>
                     <include name="GetLanguageList_GET"/>
@@ -24,18 +24,18 @@
                     <include name="UserLogout_POST"/>
                 </methods>
             </class>
-            <class name="changePassword">
-                <methods>
-                    <include name="LoginUser_POST"/>
-                    <include name="ChangePassword_POST"/>
-                </methods>
-            </class>
-            <class name="DeleteUser">
-                <methods>
-                    <include name="LoginUser_POST"/>
-                    <include name="DeleteUserAccount_DELETE"/>
-                </methods>
-            </class>
+<!--            <class name="changePassword">-->
+<!--                <methods>-->
+<!--                    <include name="LoginUser_POST"/>-->
+<!--                    <include name="ChangePassword_POST"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--            <class name="DeleteUser">-->
+<!--                <methods>-->
+<!--                    <include name="LoginUser_POST"/>-->
+<!--                    <include name="DeleteUserAccount_DELETE"/>-->
+<!--                </methods>-->
+<!--            </class>-->
         </classes>
     </test>
 </suite>

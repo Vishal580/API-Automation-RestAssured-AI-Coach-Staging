@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import static io.restassured.RestAssured.*;
 
-public class APITest {
+public class MainFlow {
     public String authorizationToken;
     public String baseURI="https://staging.bes-learning.com/ai-coach/api/v1";
 
