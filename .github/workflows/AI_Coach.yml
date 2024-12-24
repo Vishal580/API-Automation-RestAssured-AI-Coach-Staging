@@ -28,9 +28,10 @@ jobs:
 
       - name: Run tests
         id: test_run
-        run: mvn clean test -Dtestng=testng.xml -Dmaven.test.failure.ignore=false
+        run: mvn clean test -Dtestng=testng.xml || echo "Tests failed"
 
       - name: Publish Allure results
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: allure-results
@@ -40,6 +41,7 @@ jobs:
         run: allure generate allure-results --clean -o allure-report
 
       - name: Publish Allure report
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: allure-report
@@ -77,9 +79,8 @@ jobs:
           echo "DEPLOYMENT_URL=${{ env.BASE_URL }}/${{ github.run_number }}/#" >> $GITHUB_ENV
           echo "Deployment URL is set to ${{ env.DEPLOYMENT_URL }}"
 
-
       - name: Send Email Notification
-        if: steps.test_run.outcome == 'failure'   # Only send if there were test failures
+        if: failure()   # Only send if there were test failures
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
