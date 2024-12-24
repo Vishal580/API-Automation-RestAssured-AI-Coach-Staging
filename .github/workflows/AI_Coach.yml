@@ -29,6 +29,7 @@ jobs:
       - name: Run tests
         id: test_run
         run: mvn clean test -Dtestng=testng.xml || echo "Tests failed"
+        continue-on-error: false
 
       - name: Publish Allure results
         if: always()
