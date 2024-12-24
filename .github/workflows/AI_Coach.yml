@@ -28,8 +28,7 @@ jobs:
 
       - name: Run tests
         id: test_run
-        run: mvn clean test
-        continue-on-error: false
+        run: mvn clean test -Dtestng=testng.xml
 
       - name: Publish Allure results
         if: always()
