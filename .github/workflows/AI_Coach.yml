@@ -30,12 +30,12 @@ jobs:
         id: test_run
         run: mvn clean test -Dtestng=testng.xml
 
-      - name: Publish Allure results
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: allure-results
-          path: allure-results
+#      - name: Publish Allure results
+#        if: always()
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: allure-results
+#          path: allure-results
 
       - name: Generate Allure report
         run: allure generate allure-results --clean -o allure-report
