@@ -28,7 +28,7 @@ jobs:
 
       - name: Run tests
         id: test_run
-        run: mvn clean test -Dtestng=testng.xml
+        run: mvn clean test -Dtestng=testng.xml -Dmaven.test.failure.ignore=false
 
       - name: Publish Allure results
         uses: actions/upload-artifact@v4
@@ -79,7 +79,7 @@ jobs:
 
 
       - name: Send Email Notification
-        if: failure()   # Only send if there were test failures
+        if: steps.test_run.outcome == 'failure'   # Only send if there were test failures
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
