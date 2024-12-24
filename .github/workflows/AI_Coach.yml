@@ -28,7 +28,7 @@ jobs:
 
       - name: Run tests
         id: test_run
-        run: mvn clean test -Dsurefire.suiteXmlFiles=testng.xml
+        run: mvn clean test -Dtestng=testng.xml
 
 #      - name: Publish Allure results
 #        if: always()

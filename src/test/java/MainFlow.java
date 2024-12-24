@@ -10,7 +10,7 @@ public class MainFlow {
     public String baseURI="https://staging.bes-learning.com/ai-coach/api/v1";
 
     public String userEmail ="vishal@mailinator.com";
-    public String userPassword = "Vishal@12";
+    public String userPassword = "Vishal@123";
 
     public String languageId = "22";
     public String language = "English";
