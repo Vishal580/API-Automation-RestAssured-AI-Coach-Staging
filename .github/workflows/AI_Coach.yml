@@ -9,7 +9,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      BASE_URL: "https://Vishal580.github.io/API-Automation-using-RestAssured"
+      BASE_URL: "https://Vishal580.github.io/API-Automation-RestAssured-AI-Coach-Staging"
 
     steps:
       - uses: actions/checkout@v4
