@@ -3,7 +3,7 @@ name: AI Coach Staging API Testing
 on:
   workflow_dispatch:  # Manual trigger
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '*/6 * * * *'
 
 jobs:
   test:
